@@ -10,7 +10,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
   const isMutating = useIsMutating()
 
   return (
-    <div>
+    <div className='text-base'>
       {(isFetching !== 0 || isMutating !== 0) && <Loading />}
       <div>Layout</div>
       {children}

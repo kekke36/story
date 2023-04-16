@@ -35,9 +35,26 @@ export default function Home() {
       {/* {isLoading && <Loading></Loading>}
       {error && <AlertDialog />} */}
       <main>
-        <div className='text-red-500'>test</div>
-        <Link href={'/sample'}>sample</Link>
-        <button onClick={createItem}>create item</button>
+        <div className='bg-base p-2'>
+          <div>
+            <p className='text-primary'>primary</p>
+            <p className='text-secondary'>secondary</p>
+          </div>
+          <div className='space-x-2'>
+            <button className='rounded bg-primary px-4 py-2 font-bold text-white'>Primary</button>
+            <button className='rounded bg-secondary px-4 py-2 font-bold text-white'>Secondary</button>
+          </div>
+        </div>
+        <div className=''>
+          <div>
+            <Link href={'/sample'} className='text-primary'>
+              sample
+            </Link>
+          </div>
+          <button className='rounded bg-primary px-4 py-2 font-bold text-white' onClick={createItem}>
+            create item
+          </button>
+        </div>
       </main>
     </>
   )
