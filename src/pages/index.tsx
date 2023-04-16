@@ -1,7 +1,9 @@
 import AlertDialog from "@/components/AlertDialog";
 import Loading from "@/components/Loading";
+import useApi from "@/hooks/useApi";
 import { setData } from "@/stores/counterSlice";
-import { useQuery } from "@tanstack/react-query";
+import { ModelName } from "@/types";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
@@ -9,17 +11,18 @@ import { useDispatch } from "react-redux";
 
 export default function Home() {
   const dispatch = useDispatch();
-  const getTodos = async () => {
-    const { data } = await axios.get("/reviews");
-    return data;
-  };
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["todos"],
-    queryFn: getTodos,
+  const { data } = useApi(ModelName.ALEXNET);
+
+  const { mutate } = useMutation({
+    mutationFn: (name) => axios.post("/item", { name: name }),
   });
 
-  console.log(data);
-  dispatch(setData(data));
+  // console.log(data);
+  // dispatch(setData(data));
+
+  const createItem = () => {
+    mutate();
+  };
 
   return (
     <>
@@ -29,11 +32,12 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {isLoading && <Loading></Loading>}
-      {error && <AlertDialog />}
+      {/* {isLoading && <Loading></Loading>}
+      {error && <AlertDialog />} */}
       <main>
         <div>test</div>
         <Link href={"/sample"}>sample</Link>
+        <button onClick={createItem}>create item</button>
       </main>
     </>
   );
