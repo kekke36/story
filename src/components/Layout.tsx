@@ -1,7 +1,7 @@
+import { useIsFetching, useIsMutating, useQuery } from "@tanstack/react-query";
 import { ReactNode } from "react";
 import Loading from "./Loading";
 import useApi from "@/hooks/useApi";
-import { useIsFetching, useIsMutating, useQuery } from "@tanstack/react-query";
 
 const Layout = ({ children }: { children: ReactNode }) => {
   // const { isLoading } = useApi();
@@ -11,7 +11,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
 
   return (
     <div>
-      {(isFetching !== 0 || isMutating !== 0) && <Loading></Loading>}
+      {(isFetching !== 0 || isMutating !== 0) && <Loading />}
       <div>Layout</div>
       {children}
     </div>

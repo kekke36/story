@@ -1,10 +1,10 @@
 import "@/styles/globals.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
 import { store } from "../stores/store";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Layout from "@/components/Layout";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 if (process.env.NODE_ENV === "development") {
   require("../mocks");

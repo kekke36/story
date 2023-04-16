@@ -1,6 +1,6 @@
-import { ModelName } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { ModelName } from "@/types";
 
 const getTodos = async (modelName: ModelName) => {
   const { data } = await axios.get(`/items/${modelName}`);

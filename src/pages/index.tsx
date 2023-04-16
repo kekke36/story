@@ -1,13 +1,13 @@
-import AlertDialog from "@/components/AlertDialog";
-import Loading from "@/components/Loading";
-import useApi from "@/hooks/useApi";
-import { setData } from "@/stores/counterSlice";
-import { ModelName } from "@/types";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
+import AlertDialog from "@/components/AlertDialog";
+import Loading from "@/components/Loading";
+import useApi from "@/hooks/useApi";
+import { setData } from "@/stores/counterSlice";
+import { ModelName } from "@/types";
 
 export default function Home() {
   const dispatch = useDispatch();
