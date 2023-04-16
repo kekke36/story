@@ -1,10 +1,5 @@
 import { rest } from 'msw'
 import { createItemMock } from './api/createItemMock'
-import { reviews } from './api/reviews'
-import { Book } from './types'
+import { getItemsMock } from './api/getItemsMock'
 
-export const handlers = [
-  rest.get(`/reviews`, reviews),
-  rest.get(`/items/:id`, reviews),
-  rest.post(`/item`, createItemMock),
-]
+export const handlers = [rest.get(`/item`, getItemsMock), rest.post(`/item`, createItemMock)]
