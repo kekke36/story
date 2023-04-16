@@ -7,7 +7,7 @@ import AlertDialog from '@/components/AlertDialog'
 import Loading from '@/components/Loading'
 import useApi from '@/hooks/useApi'
 import { setData } from '@/stores/counterSlice'
-import { ModelName } from '@/types'
+import { ModelName } from '@/types/api'
 
 export default function Home() {
   const dispatch = useDispatch()
@@ -35,7 +35,7 @@ export default function Home() {
       {/* {isLoading && <Loading></Loading>}
       {error && <AlertDialog />} */}
       <main>
-        <div>test</div>
+        <div className='text-red-500'>test</div>
         <Link href={'/sample'}>sample</Link>
         <button onClick={createItem}>create item</button>
       </main>
