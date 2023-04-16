@@ -9,7 +9,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "next lint --dir src",
+    "lint:fix": "npm run lint --fix",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "cross-env NODE_OPTIONS=--openssl-legacy-provider build-storybook",
     "generate-client": "openapi --input ./src/types/openapi.json --output ./src/types --client axios"
@@ -44,8 +45,10 @@
     "@storybook/react": "^6.5.16",
     "@storybook/testing-library": "^0.0.13",
     "babel-loader": "^8.3.0",
+    "eslint-config-prettier": "^8.8.0",
     "msw": "^1.2.1",
-    "openapi-typescript-codegen": "^0.24.0"
+    "openapi-typescript-codegen": "^0.24.0",
+    "prettier": "^2.8.7"
   },
   "msw": {
     "workerDirectory": "public"
