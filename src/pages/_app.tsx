@@ -1,13 +1,13 @@
-import "@/styles/globals.css";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import type { AppProps } from "next/app";
-import { Provider } from "react-redux";
-import { store } from "../stores/store";
-import Layout from "@/components/Layout";
+import '@/styles/globals.css'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import type { AppProps } from 'next/app'
+import { Provider } from 'react-redux'
+import { store } from '../stores/store'
+import Layout from '@/components/Layout'
 
-if (process.env.NODE_ENV === "development") {
-  require("../mocks");
+if (process.env.NODE_ENV === 'development') {
+  require('../mocks')
 }
 
 const queryClient = new QueryClient({
@@ -16,7 +16,7 @@ const queryClient = new QueryClient({
       refetchOnWindowFocus: true, // default: true
     },
   },
-});
+})
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -28,5 +28,5 @@ export default function App({ Component, pageProps }: AppProps) {
       </Provider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
-  );
+  )
 }
