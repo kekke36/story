@@ -1,27 +1,46 @@
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useMutation, useQueries, useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useDispatch } from 'react-redux'
+import { CreateItemRequest, createItem, getItems } from '@/api/item'
 import AlertDialog from '@/components/AlertDialog'
 import Loading from '@/components/Loading'
+import { constants } from '@/constants/constants'
 import useApi from '@/hooks/useApi'
 import { setData } from '@/stores/counterSlice'
 import { ModelName } from '@/types/api'
 
 export default function Home() {
-  const dispatch = useDispatch()
-  const { data } = useApi(ModelName.ALEXNET)
+  // const dispatch = useDispatch()
+  // const { data } = useApi(ModelName.ALEXNET)
 
-  const { mutate } = useMutation({
-    mutationFn: (name) => axios.post('/item', { name: name }),
+  // const { data: items } = useQuery<{ name: string }[]>({
+  //   queryKey: ['item'],
+  //   queryFn: getItems,
+  //   onSuccess: (data) => console.log(data),
+  // })
+
+  const [item1, item2] = useQueries({
+    queries: [
+      { queryKey: ['item', 1], queryFn: getItems, onSuccess: (data: any) => console.log(data) },
+      { queryKey: ['item', 2], queryFn: getItems, onSuccess: (data: any) => console.log(data) },
+    ],
   })
 
-  // console.log(data);
-  // dispatch(setData(data));
+  const type: 'ramen' = 'ramen'
 
-  const createItem = () => {
-    mutate()
+  const { data: item1data } = item1
+  const { data: item2data } = item2
+
+  const { mutate } = useMutation({
+    mutationFn: (params: CreateItemRequest) => createItem(params),
+    onSuccess: (data) => console.log(data),
+  })
+
+  const onHandleClick = () => {
+    const params: CreateItemRequest = { name: 'test' }
+    mutate(params)
   }
 
   return (
@@ -34,7 +53,7 @@ export default function Home() {
       </Head>
       {/* {isLoading && <Loading></Loading>}
       {error && <AlertDialog />} */}
-      <main>
+      <div className='space-y-2'>
         <div className='bg-base p-2'>
           <div>
             <p className='text-primary'>primary</p>
@@ -45,17 +64,23 @@ export default function Home() {
             <button className='rounded bg-secondary px-4 py-2 font-bold text-white'>Secondary</button>
           </div>
         </div>
+        <div>
+          {item1data?.map((item, index) => (
+            <div key={index}>{item.name}</div>
+          ))}
+        </div>
+        <div>{constants[type]}</div>
         <div className=''>
           <div>
             <Link href={'/sample'} className='text-primary'>
               sample
             </Link>
           </div>
-          <button className='rounded bg-primary px-4 py-2 font-bold text-white' onClick={createItem}>
+          <button className='rounded bg-primary px-4 py-2 font-bold text-white' onClick={onHandleClick}>
             create item
           </button>
         </div>
-      </main>
+      </div>
     </>
   )
 }
