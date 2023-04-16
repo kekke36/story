@@ -24,7 +24,7 @@
           "source.fixAll.eslint": true
         }
       },
-      "extensions": ["esbenp.prettier-vscode"]
+      "extensions": ["esbenp.prettier-vscode", "bradlc.vscode-tailwindcss"]
     }
   }
 
