@@ -10,7 +10,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint --dir src",
-    "lint:fix": "npm run lint --fix",
+    "lint:fix": "npx eslint --fix src",
+    "format": "prettier --write --ignore-path .gitignore './src/**/*.{js,jsx,ts,tsx,json}'",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "cross-env NODE_OPTIONS=--openssl-legacy-provider build-storybook",
     "generate-client": "openapi --input ./src/types/openapi.json --output ./src/types --client axios"
